@@ -1,4 +1,4 @@
-![pictureGallery](http://static.wixstatic.com/media/0e6ca6_13fdb963d4b1464c71f9f015d04cd2d6.png_srz_1035_350_75_22_0.50_1.20_0.00_png_srz "Innvent")
+![pictureGallery](http://static.wixstatic.com/media/0e6ca6_13fdb963d4b1464c71f9f015d04cd2d6.png_srz_1035_350_75_22_0.50_1.20_0.00_png_srz "Aliança Luz")
 
 # Cadastro Unificado da Aliança Luz
 
