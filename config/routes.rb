@@ -1,5 +1,6 @@
 CadastroUnificado::Application.routes.draw do
-  resources :cadastros, except: [:edit, :index, :destroy, :update]
+  devise_for :users
+  resources :cadastros, except: [:index, :destroy]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

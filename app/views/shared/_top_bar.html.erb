@@ -1,11 +1,35 @@
 <!-- BEGIN TOP BAR -->
 <div id="top">
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner" >
-      <div class="container-fluid">
-        <span class="nav logo-topo"></span>
-      </div>
-    </div>
-  </div>
+	<!-- .navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner" >
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="/">
+				<span class="nav logo-topo"></span></a>
+				<!-- .topnav -->
+				<div class="btn-toolbar topnav"></div>
+				<!-- /.topnav -->
+				<div class="nav-collapse collapse">
+					<!-- .nav -->
+					<ul class="nav pull-right">
+						<li class="dropdown">
+							<% if current_user %>
+								<%= link_to(destroy_user_session_path, method: :delete) do %>
+									<i class="icon-user"></i> Logout
+								<% end %>
+							<% end %>
+						</li>
+					</ul>
+					<!-- /.nav -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.navbar -->
 </div>
 <!-- END TOP BAR -->

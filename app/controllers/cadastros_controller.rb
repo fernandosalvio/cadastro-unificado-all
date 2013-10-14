@@ -1,20 +1,31 @@
 class CadastrosController < ApplicationController
-  before_action :set_cadastro, only: [:show]
+  before_filter :authenticate_user!
+  before_action :set_cadastro, only: [:show, :edit, :update]
 
   # GET /cadastros/1
   # GET /cadastros/1.json
   def show
   end
 
+
+  # GET /cadastros/1/edit
+  def edit
+  end
+
   # GET /cadastros/new
   def new
-    @cadastro = Cadastro.new
+    unless current_user.cadastro
+      @cadastro = current_user.cadastro.first
+      render action: 'edit'
+    else
+      @cadastro = current_user.cadastro.new
+    end
   end
 
   # POST /cadastros
   # POST /cadastros.json
   def create
-    @cadastro = Cadastro.new(cadastro_params)
+    @cadastro = current_user.cadastro.new(cadastro_params)
 
     respond_to do |format|
       if @cadastro.save
@@ -27,10 +38,24 @@ class CadastrosController < ApplicationController
     end
   end
 
+  # PATCH/PUT /cadastros/1
+  # PATCH/PUT /cadastros/1.json
+  def update
+    respond_to do |format|
+      if @cadastro.update(cadastro_params)
+        format.html { redirect_to @cadastro, notice: 'Cadastro was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @cadastro.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cadastro
-      @cadastro = Cadastro.find(params[:id])
+      @cadastro = current_user.cadastro.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
