@@ -14,11 +14,11 @@ class CadastrosController < ApplicationController
 
   # GET /cadastros/new
   def new
-    unless current_user.cadastro
+    if current_user.cadastro.empty?
+      @cadastro = current_user.cadastro.new
+    else
       @cadastro = current_user.cadastro.first
       render action: 'edit'
-    else
-      @cadastro = current_user.cadastro.new
     end
   end
 
