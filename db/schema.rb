@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131013132749) do
+ActiveRecord::Schema.define(version: 20131014131857) do
 
   create_table "cadastros", force: true do |t|
     t.string   "nome"
@@ -20,16 +20,18 @@ ActiveRecord::Schema.define(version: 20131013132749) do
     t.string   "sexo"
     t.string   "estado_civil"
     t.date     "data_nascimento"
-    t.string   "nome_rua"
-    t.string   "numero"
-    t.string   "cep"
-    t.string   "cidade"
-    t.string   "bairro"
-    t.string   "pais"
+    t.string   "route"
+    t.string   "street_number"
+    t.string   "postal_code"
+    t.string   "locality"
+    t.string   "sublocality"
+    t.string   "country"
     t.string   "telefone"
     t.string   "celular"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "country_short"
+    t.string   "formatted_address"
   end
 
 end

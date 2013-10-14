@@ -35,6 +35,6 @@ class CadastrosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cadastro_params
-      params.require(:cadastro).permit(:nome, :cpf, :rg, :sexo, :estado_civil, :data_nascimento, :nome_rua, :numero, :cep, :cidade, :bairro, :pais, :telefone, :celular)
+      params.require(:cadastro).permit(:nome, :cpf, :rg, :sexo, :estado_civil, :data_nascimento, :formatted_address, :route, :street_number, :postal_code, :locality, :sublocality, :country, :country_short, :telefone, :celular)
     end
 end

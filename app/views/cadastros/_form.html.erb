@@ -39,10 +39,8 @@
         <%= f.label :data_nascimento %><br>
         <%= f.date_select :data_nascimento %>
       </div>
-      <div class="span12">
-        <div class="span3">     </div>
-        <div class="span2">     </div>
-        <div class="span2">     </div>
+      <div class="span11 offset1">
+        <div class="span8">     </div>
         <div class="span3">
           <a href="javascript:" id="dados-proximo-pessoais"> <button type="button" class="btn btn-block btn-medium btn-primary">Proximo >></button></a>
         </div>
@@ -59,30 +57,19 @@
     </header>
   </div>
     <div class="span11 offset1">
-      <div class="field">
-        <%= f.label :nome_rua %><br>
-        <%= f.text_field :nome_rua %>
-      </div>
-      <div class="field">
-        <%= f.label :numero %><br>
-        <%= f.text_field :numero %>
-      </div>
-      <div class="field">
-        <%= f.label :cep %><br>
-        <%= f.text_field :cep %>
-      </div>
-      <div class="field">
-        <%= f.label :cidade %><br>
-        <%= f.text_field :cidade %>
-      </div>
-      <div class="field">
-        <%= f.label :bairro %><br>
-        <%= f.text_field :bairro %>
-      </div>
-      <div class="field">
-        <%= f.label :pais %><br>
-        <%= f.text_field :pais %>
-      </div>
+      <input id="geocomplete" class="span9" style="min-height: 40px !important;font-size: 16px;"  type="text" placeholder="Nome da sua rua, número" value="" />
+      <input id="find_address" class="btn span2 btn-success" style="min-height: 40px !important;font-size: 16px;"  type="button" value="Procurar" />
+
+     <fieldset>
+      <label>Corrija eventuais erros abaixo...</label>
+      <%= f.text_field :formatted_address, :class => "span7", :type => "hidden" %>
+      <%= f.text_field :route, :class => "span7", :placeholder => "Nome da Rua" %>
+      <%= f.text_field :street_number, :class => "span2", :placeholder => "Num" %>
+      <%= f.text_field :postal_code, :class => "span4", :placeholder => "Código Postal" %>
+      <%= f.text_field :locality, :class => "span5", :placeholder => "Cidade" %>
+      <%= f.text_field :sublocality, :class => "span5", :placeholder => "Bairro" %>
+      <%= f.text_field :country, :class => "span4", :placeholder => "País" %>
+    </fieldset>
       <div class="field">
         <%= f.label :telefone %><br>
         <%= f.text_field :telefone %>
@@ -92,12 +79,11 @@
         <%= f.text_field :celular %>
       </div>
     </div>
-    <div class="span12">
+    <div class="span11 offset1">
         <div class="span3">     
           <a href="javascript:" id="dados-anterior-contato"> <button type="button" class="btn btn-block btn-medium btn-primary"><< Anterior</button></a>
         </div>
-        <div class="span2">     </div>
-        <div class="span2">     </div>
+        <div class="span5">     </div>
         <div class="span3">
           <a href="javascript:" id="dados-proximo-contato"> <button type="button" class="btn btn-block btn-medium btn-primary">Proximo >></button></a>
         </div>
@@ -112,12 +98,11 @@
     </header>
   </div>
     <div class="span11 offset1">
-      <div class="span12">
+      <div class="span11 offset1">
         <div class="span3">     
           <a href="javascript:" id="dados-anterior-habilidade"> <button type="button" class="btn btn-block btn-medium btn-primary"><< Anterior</button></a>
         </div>
-        <div class="span2">     </div>
-        <div class="span2">     </div>
+        <div class="span5">     </div>
         <div class="span3">
           <a href="javascript:" id="dados-proximo-habilidade"> <button type="button" class="btn btn-block btn-medium btn-primary">Proximo >></button></a>
         </div>
@@ -133,16 +118,16 @@
     </header>
   </div>
   <div class="span11 offset1">
-      <div class="span12">
-        <div class="span3">     
-          <a href="javascript:" id="dados-anterior-interesses"> <button type="button" class="btn btn-block btn-medium btn-primary"><< Anterior</button></a>
-        </div>
-      <div class="span3">    </div>
+    <div class="span11 offset1">
+      <div class="span3">     
+        <a href="javascript:" id="dados-anterior-interesses"> <button type="button" class="btn btn-block btn-medium btn-primary"><< Anterior</button></a>
+      </div>
+      <div class="span5">    </div>
       <div class="span3">
         <%= f.submit "Finalizar!", :class => "btn btn-block btn-medium btn-success" %>
       </div>
-      </div>
     </div>
+  </div>
   </div>
 <% end %>
 
@@ -206,5 +191,18 @@
       $('#form-habilidades').hide();
       $('#form-contato').hide();
     }
+  });
+</script>
+
+<script>
+  $(function(){
+    $("#geocomplete").geocomplete({
+      details: "form",
+      types: ["geocode", "establishment"]
+    });
+
+    $("#find_address").click(function(){
+      $("#geocomplete").trigger("geocode");
+    });
   });
 </script>
