@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cadastro Unificado - Associacao Alianca Luz - Paradigma Equilibrium</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <!-- BEGIN WRAP -->
+  <div id="wrap">
+    <%= render 'shared/top_bar'%>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
+  </div>
+  <!-- END WRAP -->
+  <div class="clearfix"></div>
+		<%= render 'shared/footer'%>
+</body>
+</html>

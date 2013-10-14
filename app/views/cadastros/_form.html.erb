@@ -1,0 +1,210 @@
+<%= form_for(@cadastro) do |f| %>
+  <% if @cadastro.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cadastro.errors.count, "error") %> prohibited this cadastro from being saved:</h2>
+
+      <ul>
+      <% @cadastro.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="span7 formulario-fields" id="form-pessoais">
+    <div class="box dark">
+      <header>
+        <div class="icons"><i class="icon-edit"></i></div>
+        <h5>DADOS PESSOAIS</h5>
+        <!-- .toolbar -->
+      </header>
+    </div>
+    <div class="span11 offset1">
+      <div class="field">
+        <%= f.text_field :nome, :class=> "span9 input-tooltip input-form", :placeholder =>"NOME COMPLETO" %>
+      </div>
+      <div class="field">
+        <%= f.text_field :cpf, :class=> "span9 input-tooltip input-form", :placeholder =>"CPF" %>
+      </div>
+      <div class="field">
+        <%= f.text_field :rg, :class=> "span9 input-tooltip input-form", :placeholder =>"RG" %>
+      </div>
+      <div class="field">
+        <%= f.text_field :sexo %>
+      </div>
+      <div class="field">
+        <%= f.text_field :estado_civil%>
+      </div>
+      <div class="field">
+        <%= f.label :data_nascimento %><br>
+        <%= f.date_select :data_nascimento %>
+      </div>
+      <div class="span12">
+        <div class="span3">     </div>
+        <div class="span2">     </div>
+        <div class="span2">     </div>
+        <div class="span3">
+          <a href="javascript:" id="dados-proximo-pessoais"> <button type="button" class="btn btn-block btn-large btn-success">Proximo >></button></a>
+        </div>
+      </div>
+    </div>
+      <!-- content -->
+  </div>
+  <div class="span7 formulario-fields" id="form-contato">
+  <div class="box dark">
+    <header>
+      <div class="icons"><i class="icon-edit"></i></div>
+      <h5>CONTATO</h5>
+      <!-- .toolbar -->
+    </header>
+  </div>
+    <div class="span11 offset1">
+      <div class="field">
+        <%= f.label :nome_rua %><br>
+        <%= f.text_field :nome_rua %>
+      </div>
+      <div class="field">
+        <%= f.label :numero %><br>
+        <%= f.text_field :numero %>
+      </div>
+      <div class="field">
+        <%= f.label :cep %><br>
+        <%= f.text_field :cep %>
+      </div>
+      <div class="field">
+        <%= f.label :cidade %><br>
+        <%= f.text_field :cidade %>
+      </div>
+      <div class="field">
+        <%= f.label :bairro %><br>
+        <%= f.text_field :bairro %>
+      </div>
+      <div class="field">
+        <%= f.label :pais %><br>
+        <%= f.text_field :pais %>
+      </div>
+      <div class="field">
+        <%= f.label :telefone %><br>
+        <%= f.text_field :telefone %>
+      </div>
+      <div class="field">
+        <%= f.label :celular %><br>
+        <%= f.text_field :celular %>
+      </div>
+    </div>
+    <div class="span12">
+        <div class="span3">     
+          <a href="javascript:" id="dados-anterior-contato"> <button type="button" class="btn btn-block btn-large btn-success"><< Anterior</button></a>
+        </div>
+        <div class="span2">     </div>
+        <div class="span2">     </div>
+        <div class="span3">
+          <a href="javascript:" id="dados-proximo-contato"> <button type="button" class="btn btn-block btn-large btn-success">Proximo >></button></a>
+        </div>
+      </div>
+  </div>
+  <div class="span7 formulario-fields" id="form-habilidades">
+  <div class="box dark">
+    <header>
+      <div class="icons"><i class="icon-edit"></i></div>
+      <h5>HABILIDADES</h5>
+      <!-- .toolbar -->
+    </header>
+  </div>
+    <div class="span11 offset1">
+      <div class="span12">
+        <div class="span3">     
+          <a href="javascript:" id="dados-anterior-habilidade"> <button type="button" class="btn btn-block btn-large btn-success"><< Anterior</button></a>
+        </div>
+        <div class="span2">     </div>
+        <div class="span2">     </div>
+        <div class="span3">
+          <a href="javascript:" id="dados-proximo-habilidade"> <button type="button" class="btn btn-block btn-large btn-success">Proximo >></button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="span7 formulario-fields" id="form-interesses">
+  <div class="box dark">
+    <header>
+      <div class="icons"><i class="icon-edit"></i></div>
+      <h5>INTERESSES</h5>
+      <!-- .toolbar -->
+    </header>
+  </div>
+  <div class="span11 offset1">
+      <div class="span12">
+        <div class="span3">     
+          <a href="javascript:" id="dados-anterior-interesses"> <button type="button" class="btn btn-block btn-large btn-success"><< Anterior</button></a>
+        </div>
+      <div class="span3">    </div>
+      <div class="span3">
+        <%= f.submit "Finalizar!", :class => "btn btn-block btn-large btn-success" %>
+      </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#form-interesses').hide();
+    $('#form-habilidades').hide();
+    $('#form-contato').hide();
+
+    $( "#dados-pessoais" ).click(function() {
+      show_pessoais();
+    });
+    $( "#dados-proximo-pessoais" ).click(function() {
+      show_contato();
+    });
+    $( "#dados-contato" ).click(function() {
+      show_contato();
+    });
+    $( "#dados-proximo-contato" ).click(function() {
+      show_habilidades();
+    });
+    $( "#dados-anterior-contato" ).click(function() {
+      show_pessoais();
+    });
+    $( "#dados-habilidade" ).click(function() {
+      show_habilidades();
+    });
+    $( "#dados-proximo-habilidade" ).click(function() {
+      show_interesses();
+    });
+    $( "#dados-anterior-habilidade" ).click(function() {
+      show_contato();
+    });
+    $( "#dados-interesses" ).click(function() {
+      show_interesses();
+    });
+    $( "#dados-anterior-interesses" ).click(function() {
+      show_habilidades();
+    });
+
+    show_pessoais = function(){
+      hide_form();
+      $( "#form-pessoais" ).show( "slow");
+    }
+    show_contato = function(){
+      hide_form();
+      $( "#form-contato" ).show( "slow");
+    }
+    show_habilidades = function(){
+      hide_form();
+      $( "#form-habilidades" ).show( "slow");
+    }
+    show_interesses = function(){
+      hide_form();
+      $( "#form-interesses" ).show( "slow");
+    }
+
+    hide_form = function(){
+      $('#form-pessoais').hide();
+      $('#form-interesses').hide();
+      $('#form-habilidades').hide();
+      $('#form-contato').hide();
+    }
+  });
+</script>
